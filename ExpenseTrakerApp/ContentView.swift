@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    ///View properties
+    @State private var currentTab = "Expenses"
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView(selection: $currentTab) {
+            ExpensesView(currentTab: $currentTab)
+                .tag("Expenses")
+                .tabItem {
+                    Image(systemName: "creditcard.fill")
+                    Text("Expenses")
+                }
+            CategoriesView()
+                .tag("Categories")
+                .tabItem {
+                    Image(systemName: "list.clipboard.fill")
+                    Text("Categories")
+                }
         }
-        .padding()
     }
 }
 
